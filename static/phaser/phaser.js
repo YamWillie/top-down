@@ -34,6 +34,9 @@ function preload() {
     '../images/assets/atlas/atlas.png',
     '../images/assets/atlas/atlas.json'
   )
+
+  //Monsters
+  this.load.image('slime', '../images/slime.png')
 }
 
 function create() {
