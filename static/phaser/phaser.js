@@ -66,6 +66,18 @@ function create() {
   )
   this.physics.add.collider(player, worldLayer)
 
+  //Enemies
+  // this.enemies = this.map.createFromObjects(
+  //   'Enemies',
+  //   278,
+  //   'Enemy',
+  //   0,
+  //   true,
+  //   false,
+  //   {}
+  // )
+  // this.enemiesGroup = new Enemies(this.physics.world, this, [], this.enemies)
+
   // const debugGraphics = this.add.graphics().setAlpha(0.75)
   // worldLayer.renderDebug(debugGraphics, {
   //   tileColor: null, // Color of non-colliding tiles
