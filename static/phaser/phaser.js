@@ -54,7 +54,16 @@ function create() {
   aboveLayer.setDepth(10)
 
   //Player
-  player = this.physics.add.sprite(400, 350, 'atlas', 'misa-front')
+  const spawnPoint = map.findObject(
+    'Objects',
+    obj => obj.name === 'Spawn Point'
+  )
+  player = this.physics.add.sprite(
+    spawnPoint.x,
+    spawnPoint.y,
+    'atlas',
+    'misa-front'
+  )
   this.physics.add.collider(player, worldLayer)
 
   // const debugGraphics = this.add.graphics().setAlpha(0.75)
