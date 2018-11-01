@@ -67,16 +67,9 @@ function create() {
   this.physics.add.collider(player, worldLayer)
 
   //Enemies
-  // this.enemies = this.map.createFromObjects(
-  //   'Enemies',
-  //   278,
-  //   'Enemy',
-  //   0,
-  //   true,
-  //   false,
-  //   {}
-  // )
+  this.enemies = map.createFromObjects('Enemies', 'Enemy', {})
   // this.enemiesGroup = new Enemies(this.physics.world, this, [], this.enemies)
+  this.physics.add.collider(player, this.enemies, hitEnemy, null, this)
 
   // const debugGraphics = this.add.graphics().setAlpha(0.75)
   // worldLayer.renderDebug(debugGraphics, {
@@ -173,4 +166,8 @@ function update(time, delta) {
     else if (prevVelocity.y < 0) player.setTexture('atlas', 'misa-back')
     else if (prevVelocity.y > 0) player.setTexture('atlas', 'misa-front')
   }
+}
+
+function hitEnemy(player, enemies) {
+  this.scene.restart()
 }

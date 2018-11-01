@@ -8,8 +8,13 @@ class Enemies extends Phaser.Physics.Arcade.Group {
 
   createEnemies(scene, spriteArray) {
     spriteArray.forEach(sprite => {})
-
-    const enemy = new Enemy(scene, sprite.x, sprite.y)
+    const spriteImage = this.load.image('../images/slime.png')
+    const enemy = new Enemy(
+      scene,
+      sprite.x,
+      sprite.y,
+      this.spriteFrames[spriteImage]
+    )
     this.add(enemy)
     sprite.destroy()
   }
