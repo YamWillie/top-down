@@ -67,9 +67,10 @@ function create() {
   this.physics.add.collider(player, worldLayer)
 
   //Enemies
-  this.enemies = map.createFromObjects('Enemies', 'Enemy', {})
-  // this.enemiesGroup = new Enemies(this.physics.world, this, [], this.enemies)
-  this.physics.add.collider(player, this.enemies, hitEnemy, null, this)
+  enemies = this.physics.add.sprite(300, 900, 'slime')
+  enemies.setScale(3)
+
+  this.physics.add.collider(player, enemies, hitEnemy, null, this)
 
   // const debugGraphics = this.add.graphics().setAlpha(0.75)
   // worldLayer.renderDebug(debugGraphics, {
