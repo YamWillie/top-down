@@ -167,6 +167,11 @@ function update(time, delta) {
     else if (prevVelocity.y < 0) player.setTexture('atlas', 'misa-back')
     else if (prevVelocity.y > 0) player.setTexture('atlas', 'misa-front')
   }
+  enemies.x += 2
+
+  if (enemies.x > 1200) {
+    enemies.x = 0
+  }
 }
 
 function hitEnemy(player, enemies) {
