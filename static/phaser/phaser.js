@@ -18,6 +18,7 @@ const config = {
 
 const game = new Phaser.Game(config)
 var player
+var enemies
 
 function preload() {
   // Runs once, loads up assets like images and audio
@@ -67,10 +68,10 @@ function create() {
   this.physics.add.collider(player, worldLayer)
 
   //Enemies
-  enemies = this.physics.add.sprite(300, 900, 'slime')
-  enemies.setScale(3)
+  // enemies = this.physics.add.sprite(300, 900, 'slime')
+  // enemies.setScale(3)
 
-  this.physics.add.collider(player, enemies, hitEnemy, null, this)
+  // this.physics.add.collider(player, enemies, hitEnemy, null, this)
 
   // const debugGraphics = this.add.graphics().setAlpha(0.75)
   // worldLayer.renderDebug(debugGraphics, {
@@ -78,6 +79,11 @@ function create() {
   //   collidingTileColor: new Phaser.Display.Color(243, 134, 48, 255), // Color of colliding tiles
   //   faceColor: new Phaser.Display.Color(40, 39, 37, 255), // Color of colliding face edges
   // })
+
+  this.enemies = map.createFromObjects('Enemies', 'Enemy', {})
+  this.enemiesGroup = new Enemies(this.physics.world, this, [], this.enemies)
+  this.physics.add.collider(this.enemiesGroup, worldLayer)
+  this.physics.add.collider(this.enemiesGroup, player, hitEnemy, null, this)
 
   const anims = this.anims
   anims.create({
@@ -136,7 +142,7 @@ function update(time, delta) {
   const prevVelocity = player.body.velocity.clone()
 
   player.body.setVelocity(0)
-  cursors = this.input.keyboard.createCursorKeys()
+  let cursors = this.input.keyboard.createCursorKeys()
 
   if (cursors.left.isDown) {
     player.body.setVelocityX(-speed)
@@ -167,13 +173,8 @@ function update(time, delta) {
     else if (prevVelocity.y < 0) player.setTexture('atlas', 'misa-back')
     else if (prevVelocity.y > 0) player.setTexture('atlas', 'misa-front')
   }
-  enemies.x += 2
-
-  if (enemies.x > 1200) {
-    enemies.x = 0
-  }
 }
 
-function hitEnemy(player, enemies) {
+function hitEnemy(player, enemiesGroup) {
   this.scene.restart()
 }
